@@ -229,6 +229,26 @@ awk -F';' '{antal[$2]++} END {for (a in antal) print a, antal[a]}' data.txt
 5.
 awk -F';' 'substr($4,1,4) < 2020 {print $1, substr($4,1,4)}' data.txt
 
+fem enrader - sed
+
+1. 
+sed -E 's/([0-9]{4})-([0-9]{2})-([0-9]{2})$/\3\/\2\/\1/' data.txt
+
+2.
+sed -e 's/;/ | /g' data.txt
+
+3.
+sed -E 's/^[a-z]/\u&/g' data.txt
+
+4.
+sed -E 's/([0-9]{5})/XXXXX/' data.txt
+
+5.
+ sed -E 's/;ekonomi;/;finans;/' data.txt
+ 
+
+
+
 
 
 
