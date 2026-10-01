@@ -247,12 +247,117 @@ sed -E 's/([0-9]{5})/XXXXX/' data.txt
  sed -E 's/;ekonomi;/;finans;/' data.txt
 
  PowerShell — de tre frågorna
+ Jag använder: PSVersion 5.1.26100.1591
 
- Del 1
+ Del 1 
+
+ 1. 1. Hur många kommandon finns det totalt på din maskin?
+ 1669
+
+ 2. Vilka kommandon gör något med processer? Du ska få en handfull, inte hundra.
+Debug-Process, Get-Process,  Start-Process, Stop-Process, Wait-Process
+
+3. Hur många kommandon börjar med verbet Get?
+469
+
+4. Vilka verb är godkända i PowerShell? Ta reda på skillnaden mellan Get och Read — de låter lika men betyder 
+olika saker.
+`Get` hämtar en resurs, `Read` läser från en källa.
+
+
+5. Hur många kommandon kommer från modulen Microsoft.PowerShell.Utility?
+107
+
+6. Du minns att det finns något kommando med tjänster men inte vad det heter. Hitta alla som har med saken 
+att göra, med ett enda kommando.
+
+Get-Service
+New-Service
+Restart-Service
+Resume-Service
+Set-Service
+Start-Service
+Stop-Service
+Suspend-Service
 
  Del 2
 
+7. Vad gör Get-ChildItem, och vilka parametrar tar den?\
+The `Get-ChildItem` cmdlet gets the items in one or more specified locations.
+
+ - `Archive`
+        - `Compressed`
+        - `Device`
+        - `Directory`
+        - `Encrypted`
+        - `Hidden`
+        - `IntegrityStream`
+        - `Normal`
+        - `NoScrubData`
+        - `NotContentIndexed`
+        - `Offline`
+        - `ReadOnly`
+        - `ReparsePoint`
+        - `SparseFile`
+        - `System`
+        - `Temporary`
+
+		8. Visa bara exemplen för Get-Process. Det är oftast snabbaste vägen till ett användbart kommando.
+		get-help get-process -examples
+ 
+ 9. Tar Stop-Process emot indata från pipen, och i så fall på vilken parameter? Svaret står i hjälpen — leta efter 
+raden Accept pipeline input.
+  Accept pipeline input?       false
+
+10. Finns det ett hjälpämne om operatorer? De ämnena är inte kommandon utan begreppsförklaringar, och de 
+heter något särskilt.
+Get-Help about_Operators
+
+
  Del 3
+
+11. Vilken objekttyp ger Get-Service? Det fullständiga namnet, inte "en tjänst".
+System.ServiceProcess.ServiceController
+
+12. Vilka egenskaper har ett sådant objekt? Lista bara egenskaperna, inte metoderna
+Egenskaperna är vad objektet innehåller
+
+13. Vilka metoder har det? Alltså: vad kan objektet göra, till skillnad från vad det innehåller.
+Close                   
+Continue                 
+CreateObjRef            
+Dispose                  
+Equals                    
+ExecuteCommand           
+GetHashCode               
+GetLifetimeService        
+GetType                  
+InitializeLifetimeService 
+Pause                     
+Refresh                  
+Start                    
+Stop                      
+WaitForStatus
+
+14. På Windows fungerar ls, cat och dir. Vilka riktiga cmdlets är det egentligen som körs?
+Get-ChildItem, Get-Content
+
+15. Skriv ett kommando som listar alla kommandon som både börjar med Get och har med tjänster att göra
+Get-command -verb Get -noun service
+
+16. Mät hur lång tid det tar att köra Get-Command utan filter, och jämför med samma sökning filtrerad direkt i 
+kommandot. Vilken är snabbast, och varför?  
+
+Det tog runt 20x längre med vanliga get-command, filtrerad är snabbare eftersom du söker inte i var ända modul efter kommandot.
+
+Loggjakten — en gång till, i PowerShell
+
+1. Hur många rader har loggen, och hur många unika IP-adresser förekommer? 
+
+30 rader och 6 unika
+
+
+
  
 
 
