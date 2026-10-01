@@ -245,6 +245,14 @@ sed -E 's/([0-9]{5})/XXXXX/' data.txt
 
 5.
  sed -E 's/;ekonomi;/;finans;/' data.txt
+
+ PowerShell — de tre frågorna
+
+ Del 1
+
+ Del 2
+
+ Del 3
  
 
 
