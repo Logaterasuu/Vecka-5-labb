@@ -356,6 +356,73 @@ Loggjakten — en gång till, i PowerShell
 
 30 rader och 6 unika
 
+2. Vilka IP-adresser står för flest anrop? Antal och adress, flest först. 
+
+Count Name
+----- ----
+    8 203.0.113.45
+    7 198.51.100.77
+    6 192.168.10.14
+    3 192.0.2.130
+    3 192.168.10.52
+    3 192.168.10.31
+
+3. Hur många anrop gav varje statuskod?
+Count Name
+----- ----
+   14 200
+    5 401
+    8 404
+    3 403
+
+  4. Vilka sökvägar gav 404, och hur många gånger var?  
+    2 404, /wp-login.php
+    1 404, /phpmyadmin
+    1 404, /.env
+    1 404, /backup.zip
+    1 404, /config.php
+    1 404, /.git/config
+    1 404, /saknas.html
+
+    5. 5. Vilken timme på dygnet hade flest anrop?
+
+    Count Name
+----- ----
+    9 09
+    7 10
+    6 08
+    5 11
+    3 12
+
+    6. Vilka är de tre mest efterfrågade sökvägarna? Samma tvetydighet finns kvar som förra gången — hitta den, 
+och lös den.
+    Count Name
+----- ----
+    6 /index.html
+    4 /admin/login
+    4 /admin
+
+    7. Hur många byte har servern skickat totalt? Och i megabyte, med två decimaler?
+    99916 bytes
+
+    0.10 MB
+    8. Vilka IP-adresser har fått 401 eller 403? Lista varje adress en gång.
+    Count Name
+----- ----
+    8 203.0.113.45
+
+
+9. En av IP-adresserna beter sig som en sårbarhetsskanner. Visa beviset med en pipe.
+
+$logg |Where-Object { $_.Status -eq 404 }| Group-Object IP | Sort-Object Count -Descending | Select-Object Count,Name
+
+Count Name
+----- ----
+    7 198.51.100.77
+    1 192.0.2.130
+
+
+10. $logg | Group-Object IP | Sort-Object count -Descending | Select-Object Count,Name | Tee-Object -FilePath topp.txt
 
 
  
